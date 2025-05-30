@@ -8,9 +8,14 @@ function Navbar() {
   );
 }
 
+function Home() {
+  return <h1>React Home</h1>;
+}
+
 // create root
 const root = createRoot(document.getElementById('root') as HTMLElement).render(
   <div>
     <Navbar />
+    <Home />
   </div>,
 );
