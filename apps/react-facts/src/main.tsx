@@ -1,13 +1,9 @@
-import { StrictMode } from 'react';
+import { StrictMode, Fragment } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import './styles.css';
 
 import reactLogo from './assets/react_logo.png';
-
-function FactsHeading() {
-  return <h1>React Facts</h1>;
-}
 
 function Facts() {
   return (
@@ -21,13 +17,38 @@ function Facts() {
   );
 }
 
+function Header() {
+  return (
+    <header>
+      <img src={reactLogo} alt="react-logo" />
+    </header>
+  );
+}
+
+function Footer() {
+  return (
+    <footer>
+      <small>&copy; 2025 Anton Palermo development. All rights reserved</small>
+    </footer>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Header />
+      <main>
+        <h1>Reasons I want to learn React!</h1>
+        <Facts />
+      </main>
+      <Footer />
+    </>
+  );
+}
+
 // creates a root and display the rendered element
 createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
-    <main>
-      <img src={reactLogo} alt="react-logo" />
-      <FactsHeading />
-      <Facts />
-    </main>
+    <App />
   </StrictMode>
 );
