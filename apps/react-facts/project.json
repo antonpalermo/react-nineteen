@@ -1,9 +1,0 @@
-{
-  "name": "react-facts",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/react-facts/src",
-  "projectType": "application",
-  "tags": [],
-  "// targets": "to see all targets run: nx show project react-facts --web",
-  "targets": {}
-}
