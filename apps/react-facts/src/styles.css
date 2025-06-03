@@ -7,7 +7,35 @@
 
 html,
 body {
+  margin: 0;
+  padding: 0;
+
   font-family: 'Inter', sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+}
+
+header {
+  padding: 30px 25px;
+
+  width: 100%;
+  background-color: #21222a;
+}
+
+header > nav {
+  height: 90px;
+  display: flex;
+  align-items: center;
+}
+
+img {
+  width: 40px;
+}
+
+nav > span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-left: 0.5em;
+
+  color: #61dafb;
 }
