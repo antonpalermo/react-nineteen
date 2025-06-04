@@ -61,3 +61,8 @@ main > ul > li {
   margin-block: 1.5rem;
   line-height: 1.2rem;
 }
+
+li::marker {
+  color: #61dafb;
+  font-size: 1.5rem;
+}
