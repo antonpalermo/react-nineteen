@@ -1,3 +1,5 @@
+import Header from './header';
+
 export default function App() {
-  return <h1>App</h1>;
+  return <Header />;
 }
