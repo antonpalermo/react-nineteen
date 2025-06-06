@@ -1,0 +1,35 @@
+.article_container {
+  background-color: #eeeeee;
+  border-radius: 10px;
+}
+
+.article_name {
+  font-size: 1.5rem;
+}
+
+.article_contents {
+  padding: 1.5rem;
+}
+
+.article_contents > h2 {
+  margin: 0;
+}
+
+.article_contents > span {
+  padding-right: 1.5rem;
+}
+
+.cover_container {
+  position: relative;
+  min-height: 480px;
+}
+
+.cover_container > img {
+  position: absolute;
+
+  width: 100%;
+  object-fit: cover;
+
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
