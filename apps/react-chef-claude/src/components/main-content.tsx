@@ -1,13 +1,32 @@
+import { FormEvent, useRef, useState } from 'react';
+
 export default function MainContent() {
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const [msg, setMsg] = useState('sample');
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+
+    if (formRef.current) {
+      const formData = new FormData(formRef.current);
+      formRef.current.reset();
+    }
+  }
+
   return (
     <main className="max-w-4xl mx-auto px-5">
       <div className="py-10">
-        <form className="w-full sm:space-x-3 space-x-5 inline-flex items-center">
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          className="w-full sm:space-x-3 space-x-5 inline-flex items-center"
+        >
           <input
             type="text"
             aria-label="add ingredient"
             placeholder="Potatoes"
             className="flex-1 border border-gray-200 px-3 py-2 rounded-md text-sm"
+            name="ingredient"
           />
           <button
             type="submit"
@@ -16,6 +35,7 @@ export default function MainContent() {
             Add Ingredient
           </button>
         </form>
+        {msg}
       </div>
     </main>
   );
