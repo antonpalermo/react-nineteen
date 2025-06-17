@@ -1,24 +1,22 @@
-import { FormEvent, useRef, useState } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 
 export default function MainContent() {
-  const formRef = useRef<HTMLFormElement | null>(null);
-  const [msg, setMsg] = useState('sample');
+  const [ingredients, setIngredients] = useState<string[]>([]);
 
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault();
+  const Ingredients = ingredients.map(ingredient => (
+    <li key={ingredient}>{ingredient}</li>
+  ));
 
-    if (formRef.current) {
-      const formData = new FormData(formRef.current);
-      formRef.current.reset();
-    }
+  function submit(formData: FormData) {
+    const newIngredient = formData.get('ingredient') as string;
+    setIngredients(prev => [...prev, newIngredient]);
   }
 
   return (
     <main className="max-w-4xl mx-auto px-5">
       <div className="py-10">
         <form
-          ref={formRef}
-          onSubmit={handleSubmit}
+          action={submit}
           className="w-full sm:space-x-3 space-x-5 inline-flex items-center"
         >
           <input
@@ -35,7 +33,7 @@ export default function MainContent() {
             Add Ingredient
           </button>
         </form>
-        {msg}
+        {Ingredients}
       </div>
     </main>
   );
