@@ -6,5 +6,5 @@ root.render(
     <li>Exciting</li>
     <li>Popular</li>
     <li>Reactive</li>
-  </ul>,
+  </ul>
 );
