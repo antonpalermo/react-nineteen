@@ -4,7 +4,9 @@ export default function MainContent() {
   const [ingredients, setIngredients] = useState<string[]>([]);
 
   const Ingredients = ingredients.map(ingredient => (
-    <li key={ingredient}>{ingredient}</li>
+    <li key={ingredient} className="list-none text-md my-4">
+      {ingredient}
+    </li>
   ));
 
   function submit(formData: FormData) {
@@ -33,7 +35,12 @@ export default function MainContent() {
             Add Ingredient
           </button>
         </form>
-        {Ingredients}
+        {ingredients && (
+          <div className="my-5">
+            <h2 className="text-2xl">Current ingredients on hand.</h2>
+            {Ingredients}
+          </div>
+        )}
       </div>
     </main>
   );
