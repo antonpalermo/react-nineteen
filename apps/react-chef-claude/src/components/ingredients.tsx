@@ -3,20 +3,30 @@ import { useIngredients } from '../hooks/useIngredients';
 export default function Ingredients() {
   const { ingredients, removeIngredient } = useIngredients();
 
-  const IngredientList = ingredients.map(ingredient => (
-    <li key={ingredient.id}>
-      <div className="w-full inline-flex justify-between items-center">
-        <span className="font-medium text-lg">{ingredient.name}</span>
-        <button onClick={() => removeIngredient(ingredient.id)}>Remove</button>
-      </div>
-    </li>
-  ));
+  const isEmpty = ingredients.length === 0;
 
-  const EmptyIngredientList = (
-    <h2 className="text-2xl text-center my-5">
-      Your ingredients is currently empty!
-    </h2>
+  const IngredientList = (
+    <div>
+      <h2 className="text-2xl my-5">Ingredients currently on hand</h2>
+      {ingredients.map(ingredient => (
+        <li
+          key={ingredient.id}
+          className="px-5 my-2.5 text-lg text-gray-700 font-medium"
+        >
+          {ingredient.name}
+        </li>
+      ))}
+    </div>
   );
 
-  return ingredients.length !== 0 ? IngredientList : EmptyIngredientList;
+  const EmptyIngredientList = (
+    <div>
+      <h2 className="text-2xl my-5">Your ingredients is currently empty!</h2>
+      <p className=" text-gray-700 text-md">
+        Try adding one using the input above...
+      </p>
+    </div>
+  );
+
+  return !isEmpty ? IngredientList : EmptyIngredientList;
 }
