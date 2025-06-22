@@ -8,7 +8,9 @@ import { generateRecipes } from '../helpers';
 
 export default function MainContent() {
   const { ingredients } = useIngredients();
+
   const [response, setResponse] = useState('');
+  const [generating, setGenerating] = useState(false);
 
   return (
     <main className="max-w-4xl mx-auto px-5">
@@ -23,12 +25,15 @@ export default function MainContent() {
             </p>
           </div>
           <button
-            className="w-full sm:w-auto text-sm font-medium px-3 py-2 bg-yellow-500 hover:bg-yellow-400 rounded-md hover:cursor-pointer"
+            className="w-full sm:w-auto text-sm font-medium px-3 py-2 bg-yellow-500 hover:bg-yellow-400 rounded-md hover:cursor-pointer disabled:bg-yellow-200 disabled:text-gray-500"
             onClick={async () => {
+              setGenerating(prev => !prev);
               for await (const chunks of generateRecipes(ingredients)) {
                 setResponse(prev => (prev += chunks));
               }
+              setGenerating(prev => !prev);
             }}
+            disabled={generating}
           >
             Get recipe
           </button>
