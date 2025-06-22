@@ -1,0 +1,9 @@
+{
+  "name": "react-meme-generator",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/react-meme-generator/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project react-meme-generator --web",
+  "targets": {}
+}
