@@ -19,7 +19,7 @@ export default function App() {
     <>
       <Header />
       <div className="max-w-5xl sm:max-w-4xl mx-auto px-5">
-        <img src={meme?.url} alt={meme?.name} />
+        <img src={meme?.url} alt={meme?.name} className="mx-auto" />
       </div>
     </>
   );

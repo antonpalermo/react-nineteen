@@ -43,8 +43,11 @@ export function MemeProvider({ children }: MemeProviderProps) {
     fetch('https://api.imgflip.com/get_memes')
       .then(res => res.json())
       .then(res => {
-        setMemes(res.data.memes);
-        setMeme(res.data.memes[0]);
+        const fetchedMemes = res.data.memes as Meme[];
+        setMemes(fetchedMemes);
+
+        const randomMemeIndex = Math.floor(Math.random() * fetchedMemes.length);
+        setMeme(fetchedMemes[randomMemeIndex]);
       });
   }, []);
 
