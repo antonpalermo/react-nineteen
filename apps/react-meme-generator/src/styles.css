@@ -1,1 +1,5 @@
 @import 'tailwindcss';
+
+.meme-font {
+  font-family: 'Impact', sans-serif;
+}
