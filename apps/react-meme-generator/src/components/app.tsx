@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
 
 import Header from './header';
@@ -14,6 +14,7 @@ type Caption = {
 
 export default function App() {
   const { meme } = useMeme();
+  const childRef = useRef<HTMLDivElement>(null);
 
   const [captions, setCaptions] = useState<Caption[]>([
     {
@@ -25,29 +26,36 @@ export default function App() {
     }
   ]);
 
-  function handleOnStart(e: DraggableEvent, data: DraggableData) {}
-
-  function handleOnStop(e: DraggableEvent, data: DraggableData) {
-    console.log(e, data);
+  function newCaption() {
+    setCaptions(prevState => [
+      ...prevState,
+      { text: 'Caption', position: { x: 0, y: 0 } }
+    ]);
   }
 
   return (
     <>
       <Header />
       <div className="max-w-5xl sm:max-w-4xl mx-auto px-5">
-        <img src={meme?.url} alt={meme?.name} className="mx-auto" />
-        {captions.map((caption, i) => (
-          <Draggable
-            key={i}
-            bounds="parent"
-            defaultPosition={{ x: caption.position.x, y: caption.position.y }}
-            onStart={(e, data) => handleOnStart(e, data)}
-            onStop={(e, data) => handleOnStop(e, data)}
-          >
-            <div>{caption.text}</div>
-          </Draggable>
-        ))}
-        <button className="bg-violet-500 text-white border border-violet-400 rounded px-3 py-2 text-sm font-medium hover:cursor-pointer">
+        <div>
+          <img src={meme?.url} alt={meme?.name} className="mx-auto" />
+          {captions.map((caption, i) => (
+            <Draggable
+              key={i}
+              bounds="parent"
+              nodeRef={childRef}
+              defaultPosition={{ x: caption.position.x, y: caption.position.y }}
+            >
+              <div ref={childRef} className="w-fit">
+                {caption.text}
+              </div>
+            </Draggable>
+          ))}
+        </div>
+        <button
+          onClick={newCaption}
+          className="bg-violet-500 text-white border border-violet-400 rounded px-3 py-2 text-sm font-medium hover:cursor-pointer"
+        >
           Add text
         </button>
       </div>
