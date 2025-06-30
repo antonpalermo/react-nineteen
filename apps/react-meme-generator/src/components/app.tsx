@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
 
 import Header from './header';
@@ -33,6 +33,21 @@ export default function App() {
     ]);
   }
 
+  function downloadMeme() {}
+
+  function handleInputChange(e: ChangeEvent<HTMLInputElement>, index: number) {
+    setCaptions(prevState => {
+      const newCaptionObj = [...prevState];
+
+      newCaptionObj[index] = {
+        position: newCaptionObj[index].position,
+        text: e.target.value
+      };
+
+      return newCaptionObj;
+    });
+  }
+
   return (
     <>
       <Header />
@@ -55,11 +70,26 @@ export default function App() {
             </Draggable>
           ))}
         </div>
+        {captions.map((caption, i) => (
+          <input
+            key={i}
+            type="text"
+            value={caption.text}
+            onChange={e => handleInputChange(e, i)}
+            className="border border-gray-200 w-full px-3 py-2 rounded mb-3"
+          />
+        ))}
         <button
           onClick={newCaption}
           className="bg-violet-500 text-white border border-violet-400 rounded px-3 py-2 text-sm font-medium hover:cursor-pointer"
         >
           Add text
+        </button>
+        <button
+          onClick={downloadMeme}
+          className="bg-violet-500 text-white border border-violet-400 rounded px-3 py-2 text-sm font-medium hover:cursor-pointer"
+        >
+          Download
         </button>
       </div>
     </>
