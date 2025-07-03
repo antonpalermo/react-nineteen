@@ -63,7 +63,7 @@ export default function App() {
             >
               <div
                 ref={childRef}
-                className="w-fit meme-font text-white uppercase text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]"
+                className="w-fit meme-font text-white uppercase text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-move"
               >
                 {caption.text}
               </div>
